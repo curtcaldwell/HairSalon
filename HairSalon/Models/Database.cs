@@ -1,8 +1,8 @@
 using System;
 using MySql.Data.MySqlClient;
-using Airport;
+using HairSalon;
 
-namespace Airport.Models
+namespace HairSalon.Models
 {
   public class DB
   {
