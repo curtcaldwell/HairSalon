@@ -1,0 +1,19 @@
+<h1>Stylists</h1>
+<p><a href='/categories/new'>Add a New Stylist<a/></p>
+<p><a href='/'>Back to Home<a/></p>
+<p><a href='/items/find'>Find by Id<a/></p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  @foreach(var category in Model)
+  {
+  <tr>
+    <td>@category.GetStylistName()</td>
+    <td><a href="/categories/@category.GetStylistId()/update">Edit</a></td>
+    <td><a href="/categories/@category.GetStylistId()/delete">Delete</a></td>
+  </tr>
+  }
+</table>
