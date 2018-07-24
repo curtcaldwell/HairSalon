@@ -8,54 +8,62 @@ namespace HairSalon.Controllers
   public class ClientController : Controller
   {
 
-    [HttpGet("/categories")]
+    [HttpGet("/clients")]
     public ActionResult Index()
     {
-        List<Client> allClients = Client.GetAll();
+      List<Client> allClients = Client.GetAll();
 
+      return View(allClients);
+    }
+    [HttpGet("/clients/prevent")]
+    public ActionResult PreventSubmit()
+    {
 
-        return View(allClients);    }
-
-    [HttpGet("/categories/new")]
+      return View();  
+    }
+    [HttpGet("/clients/new")]
     public ActionResult CreateForm()
     {
-      // return new EmptyResult(); //Test will fail
-      return View(); //Test will pass
+      List<Stylist> listStylists = Stylist.GetAll();
+      if(listStylists.Count > 0)
+      {
+
+        return View(listStylists);
+      }
+      else
+      {
+        return RedirectToAction("PreventSubmit");
+      }
+
     }
-    [HttpPost("/categories")]
+    [HttpPost("/clients")]
     public ActionResult Create()
     {
-      Client newClient = new Client (Request.Form["newClient"]);
+      Client newClient = new Client (Request.Form["newClient"], int.Parse(Request.Form["stylistId"]));
       newClient.Save();
       List<Client> allClients = Client.GetAll();
       return View("Index", allClients);
     }
-    [HttpGet("/categories/{id}/update")]
+    [HttpGet("/clients/{id}/update")]
     public ActionResult UpdateForm(int id)
     {
         Client thisClient = Client.Find(id);
         return View(thisClient);
     }
-    [HttpPost("/categories/{id}/update")]
+    [HttpPost("/clients/{id}/update")]
     public ActionResult Update(int id)
     {
         Client thisClient = Client.Find(id);
-        thisClient.Edit(Request.Form["newname"]);
+        thisClient.Edit(Request.Form["updateClient"]);
         return RedirectToAction("Index");
     }
 
-    [HttpGet("/categories/{id}/delete")]
+    [HttpGet("/clients/{id}/delete")]
     public ActionResult Delete(int id)
     {
         Client thisClient = Client.Find(id);
         thisClient.Delete();
         return RedirectToAction("Index");
-    }
-    [HttpPost("/categories/delete")]
-    public ActionResult DeleteAll()
-    {
-      Client.ClearAll();
-      return View();
     }
   }
 }

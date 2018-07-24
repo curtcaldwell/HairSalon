@@ -1,0 +1,8 @@
+<h1>Update Stylist</h1>
+<p><a href='/stylists'>Back to List<a/></p>
+<hr/>
+<form action="/stylists/@Model.GetStylistId()/update" method="post">
+  <label for="updateStylist">Update stylist name:</label>
+  <input id="updateStylist" name="updateStylist" type="text" value="@Model.GetStylistName()">
+  <button type="submit">Submit</button>
+</form>
