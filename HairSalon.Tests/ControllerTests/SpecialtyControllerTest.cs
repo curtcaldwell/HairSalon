@@ -7,13 +7,13 @@ using HairSalon.Models;
 namespace HairSalon.Tests
 {
   [TestClass]
-  public class StylistControllerTest
+  public class SpecialtyControllerTest
   {
     [TestMethod]
     public void Index_ReturnsCorrectView_True()
     {
       //Arrange
-      StylistController controller = new StylistController();
+      SpecialtyController controller = new SpecialtyController();
 
       //Act
       ActionResult indexView = controller.Index();
@@ -22,10 +22,10 @@ namespace HairSalon.Tests
       Assert.IsInstanceOfType(indexView, typeof(ViewResult));
     }
     [TestMethod]
-    public void Index_HasCorrectModelType_StylistList()
+    public void Index_HasCorrectModelType_SpecialtyList()
     {
       //Arrange
-      StylistController controller = new StylistController();
+      SpecialtyController controller = new SpecialtyController();
       IActionResult actionResult = controller.Index();
       ViewResult indexView = controller.Index() as ViewResult;
 
@@ -33,13 +33,13 @@ namespace HairSalon.Tests
       var result = indexView.ViewData.Model;
 
       //Assert
-      Assert.IsInstanceOfType(result, typeof(List<Stylist>));
+      Assert.IsInstanceOfType(result, typeof(List<Specialty>));
     }
     [TestMethod]
     public void CreateForm_ReturnsCorrectView_True()
     {
       //Arrange
-      StylistController controller = new StylistController();
+      SpecialtyController controller = new SpecialtyController();
 
       //Act
       ActionResult createFormView = controller.CreateForm();
@@ -51,7 +51,7 @@ namespace HairSalon.Tests
     public void Details_ReturnsCorrectView_True()
     {
       //Arrange
-      StylistController controller = new StylistController();
+      SpecialtyController controller = new SpecialtyController();
 
       //Act
       ActionResult detailsView = controller.Details(0);
@@ -60,10 +60,10 @@ namespace HairSalon.Tests
       Assert.IsInstanceOfType(detailsView, typeof(ViewResult));
     }
     [TestMethod]
-    public void Details_HasCorrectModelType_ClientList()
+    public void Details_HasCorrectModelType_SpecialtyItem()
     {
       //Arrange
-      StylistController controller = new StylistController();
+      SpecialtyController controller = new SpecialtyController();
       IActionResult actionResult = controller.Details(0);
       ViewResult detailsView = controller.Details(0) as ViewResult;
 
